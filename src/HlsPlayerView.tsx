@@ -1,9 +1,11 @@
-import { View, type ColorValue, type ViewProps } from 'react-native';
+import { View } from 'react-native';
+import type { HlsPlayerProps } from './types';
 
-type Props = ViewProps & {
-  color?: ColorValue;
-};
-
-export function HlsPlayerView({ color, style, ...rest }: Props) {
-  return <View {...rest} style={[style, { backgroundColor: color }]} />;
+/**
+ * Web / 未支持平台的降级占位：仅渲染一个空 View，不做真正播放。
+ * 原生实现见 HlsPlayerView.native.tsx。
+ */
+export function HlsPlayerView(props: HlsPlayerProps) {
+  const { style } = props;
+  return <View style={style} />;
 }

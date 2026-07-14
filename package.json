@@ -2,13 +2,15 @@
   "name": "react-native-hls-player",
   "version": "0.1.0",
   "description": "hls stream video player for react-native",
-  "main": "./lib/module/index.js",
-  "types": "./lib/typescript/src/index.d.ts",
+  "main": "./src/index.tsx",
+  "source": "./src/index.tsx",
+  "react-native": "./src/index.tsx",
+  "types": "./src/index.tsx",
   "exports": {
     ".": {
-      "react-native-hls-player-source": "./src/index.tsx",
-      "types": "./lib/typescript/src/index.d.ts",
-      "default": "./lib/module/index.js"
+      "source": "./src/index.tsx",
+      "types": "./src/index.tsx",
+      "default": "./src/index.tsx"
     },
     "./package.json": "./package.json"
   },

@@ -1,13 +1,15 @@
-import type { HostComponent, ViewProps } from 'react-native';
 import type {
-  Double,
-  Int32,
-  DirectEventHandler,
-} from 'react-native/Libraries/Types/CodegenTypes';
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+  CodegenTypes,
+  HostComponent,
+  ViewProps,
+} from 'react-native';
+import { codegenNativeComponent } from 'react-native';
 
-type LoadEvent = Readonly<{ duration: Double }>;
-type ProgressEvent = Readonly<{ currentTime: Double; duration: Double }>;
+type LoadEvent = Readonly<{ duration: CodegenTypes.Double }>;
+type ProgressEvent = Readonly<{
+  currentTime: CodegenTypes.Double;
+  duration: CodegenTypes.Double;
+}>;
 type ErrorEvent = Readonly<{ message: string }>;
 type EndEvent = Readonly<{}>;
 
@@ -21,13 +23,13 @@ export interface NativeProps extends ViewProps {
   paused?: boolean;
   muted?: boolean;
   /** 目标进度（秒）。 */
-  seekTo?: Double;
+  seekTo?: CodegenTypes.Double;
   /** 全屏请求计数（递增触发一次全屏）。 */
-  fullscreenRequest?: Int32;
-  onLoad?: DirectEventHandler<LoadEvent>;
-  onProgress?: DirectEventHandler<ProgressEvent>;
-  onEnd?: DirectEventHandler<EndEvent>;
-  onError?: DirectEventHandler<ErrorEvent>;
+  fullscreenRequest?: CodegenTypes.Int32;
+  onLoad?: CodegenTypes.DirectEventHandler<LoadEvent>;
+  onProgress?: CodegenTypes.DirectEventHandler<ProgressEvent>;
+  onEnd?: CodegenTypes.DirectEventHandler<EndEvent>;
+  onError?: CodegenTypes.DirectEventHandler<ErrorEvent>;
 }
 
 export default codegenNativeComponent<NativeProps>(

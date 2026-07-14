@@ -2,6 +2,7 @@
   "name": "react-native-hls-player",
   "version": "0.1.0",
   "description": "hls stream video player for react-native",
+  "private":"true",
   "main": "./src/index.tsx",
   "source": "./src/index.tsx",
   "react-native": "./src/index.tsx",

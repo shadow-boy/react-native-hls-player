@@ -235,6 +235,8 @@ static NSString *const kResourceScheme = @"miying-hls";
   if (_sourceUrl.length == 0 || _keyUrl.length == 0) {
     return;
   }
+  [self configureAudioSessionForPlayback];
+
   NSURL *source = [NSURL URLWithString:_sourceUrl];
   NSURL *intercepted = [self interceptedURLFrom:source];
   if (!intercepted) {
@@ -334,6 +336,26 @@ static NSString *const kResourceScheme = @"miying-hls";
   _playerLayer.player = nil;
   [_asset.resourceLoader setDelegate:nil queue:nil];
   _asset = nil;
+}
+
+- (void)configureAudioSessionForPlayback
+{
+  AVAudioSession *session = [AVAudioSession sharedInstance];
+  NSError *categoryError = nil;
+  [session setCategory:AVAudioSessionCategoryPlayback
+                  mode:AVAudioSessionModeMoviePlayback
+               options:0
+                 error:&categoryError];
+  if (categoryError) {
+    NSLog(@"[HlsPlayerView] 设置音频会话 category 失败: %@", categoryError);
+    return;
+  }
+
+  NSError *activeError = nil;
+  [session setActive:YES error:&activeError];
+  if (activeError) {
+    NSLog(@"[HlsPlayerView] 激活音频会话失败: %@", activeError);
+  }
 }
 
 - (void)updatePlaybackState
